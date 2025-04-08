@@ -58,14 +58,19 @@ $$
 $$
 $\,$
 
-**証明** $\,$ 関数の積の微分
-$$
-(g(x) h(x))' = g'(x) h(x) + g(x) h'(x)
-$$
-の両辺を $a$ から $b$ まで積分する．$g'(x) h(x)$ も $g(x) h'(x)$ も連続だから，この両辺の各項は積分できて，
-$$
+**証明** $\,$ 関数の積の微分 $(g(x) h(x))' = g'(x) h(x) + g(x) h'(x)$ の両辺を $a$ から $b$ まで積分する．$g'(x) h(x)$ も $g(x) h'(x)$ も連続だから，この両辺の各項は積分できるので，積分公式より，
+<!-- $$
 % \Bigl[g(t) h(t) \Bigr]_a^b = \int_a^b (g(t) h(t))' dt = \int_a^b g'(t) h(t) dt + \int_a^b g(t) h'(t) dt.
-\int_a^b g'(t) h(t) dt + \int_a^b g(t) h'(t) dt = \int_a^b (g(t) h(t))' dt = \Bigl[g(t) h(t) \Bigr]_a^b.
+% \int_a^b g'(t) h(t) dt + \int_a^b g(t) h'(t) dt = \int_a^b (g(t) h(t))' dt = \Bigl[g(t) h(t) \Bigr]_a^b.
+\int_a^b \left(g'(t) h(t) + g(t) h'(t)\right) dt = \int_a^b g'(t) h(t) dt + \int_a^b g(t) h'(t) dt = \int_a^b (g(t) h(t))' dt = \Bigl[g(t) h(t) \Bigr]_a^b.
+$$ -->
+$$
+\begin{align*}
+\int_a^b g'(t) h(t) dt + \int_a^b g(t) h'(t) dt
+& = \int_a^b \left(g'(t) h(t) + g(t) h'(t)\right) dt \quad \text{($\because$ 積分の線形性)} \\
+& = \int_a^b (g(t) h(t))' dt \\
+& = \Bigl[g(t) h(t) \Bigr]_a^b.
+\end{align*}
 $$
 (証明終)
 
@@ -305,6 +310,87 @@ $$
 \lim_{n \to \infty} R_n(x) = \lim_{n \to \infty} \int_{x_0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} f^{(n)}(t) dt = 0
 $$
 が成立することと同値である． -->
+
+---
+
+## 指数関数のテイラー展開
+
+$x_0 = 0$ における指数関数のテイラー公式
+$$
+e^x = \sum_{k = 0}^{n - 1} \frac{x^k}{k!} + R_n(x), \quad R_n(x) = \int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} e^t dt
+$$
+の剰余項 $R_n(x)$ が，任意の $x$ で $0$ に収束するか確認する．$x > 0$ なら，積分の三角不等式より，
+$$
+\begin{align*}
+|R_n(x)| & = \left|\int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} e^t dt\right| \\
+& \leq \int_{0}^x \left|\frac{(x - t)^{n - 1}}{(n - 1)!} e^t \right| dt \quad \text{($\because$ 三角不等式)} \\
+& = \int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} |e^t| dt \quad \text{($\because x - t \geq 0$ より $(x - t)^{n - 1} \geq 0$)}
+\end{align*}
+$$
+が成り立つ．$x > 0$ なら $e^t \leq e^x$ $\,(0 \leq t \leq x)$ であるから，積分の単調性より，
+
+---
+
+$$
+\begin{align*}
+\int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} |e^t| dt
+& \leq \int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} |e^x| dt \\
+& = \frac{|e^x|}{(n - 1)!} \int_{0}^x (x - t)^{n - 1} dt \\
+& = \frac{|e^x|}{(n - 1)!} \Bigl[-\frac{(x - t)^n}{n}\Bigr]_0^x \\
+& = |e^x| \frac{x^n}{n!}
+\end{align*}
+$$
+が成り立つ．$|e^x|$ は $n$ に無関係で，$\displaystyle \frac{x^n}{n!}$ は $n \to \infty$ のとき $0$ に収束するので，
+$$
+0 \leq |R_n(x)| \leq |e^x| \frac{x^n}{n!} \to 0 \quad (n \to \infty)
+$$
+したがって，$\displaystyle \lim_{n \to \infty} |R_n(x)| = 0$ であるから $\displaystyle \lim_{n \to \infty} R_n(x) = 0$．
+
+---
+
+$x < 0$ なら，積分の三角不等式より，
+$$
+\begin{align*}
+|R_n(x)| & = \left|\int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} e^t dt\right| \\
+& = \left|-\int_{x}^0 \frac{(x - t)^{n - 1}}{(n - 1)!} e^t dt\right| \quad \text{($\because$ $a \geq b$ のときの積分 $\displaystyle \int_a^b f(x) dx$)} \\
+& = \left|\int_{x}^0 \frac{(x - t)^{n - 1}}{(n - 1)!} e^t dt\right| \\
+& \leq \int_{x}^0 \left|\frac{(x - t)^{n - 1}}{(n - 1)!} e^t \right| dt \quad \text{($\because$ 三角不等式)} \\
+& = \int_{x}^0 \frac{|(-1)^{n - 1} (t - x)^{n - 1}|}{(n - 1)!} |e^t| dt \\
+& = \int_{x}^0 \frac{(t - x)^{n - 1}}{(n - 1)!} |e^t| dt \quad \text{($\because t - x \geq 0$ より $(t - x)^{n - 1} \geq 0$)}
+\end{align*}
+$$
+が成り立つ．$x < 0$ なら $e^t \leq e^0 = 1$ $\,(x \leq t \leq 0)$ であるから，積分の単調性より，
+
+---
+
+$$
+\begin{align*}
+\int_{x}^0 \frac{(t - x)^{n - 1}}{(n - 1)!} |e^t| dt
+& \leq \int_{x}^0 \frac{(t - x)^{n - 1}}{(n - 1)!} dt \\
+& = \frac{1}{(n - 1)!} \int_{x}^0 (t - x)^{n - 1} dt \\
+& = \frac{1}{(n - 1)!} \Bigl[\frac{(t - x)^n}{n}\Bigr]_x^0 \\
+& = \frac{x^n}{n!}
+\end{align*}
+$$
+が成り立つ．したがって，$x > 0$ のときと同様にして，$\displaystyle \lim_{n \to \infty} R_n(x) = 0$．
+
+よって，剰余項 $R_n(x)$ は任意の $x$ で $0$ に収束するので，
+$$
+e^x = \sum_{k = 0}^\infty \frac{x^k}{k!}
+$$
+が任意の $x$ で成り立つ．
+
+<!-- よって，任意の $x$ についてテイラー展開
+$$
+% e^x = \lim_{n \to \infty} \left(\sum_{k = 0}^{n - 1} \frac{x^k}{k!} + R_n(x)\right) = \sum_{k = 0}^\infty \frac{x^k}{k!} + \lim_{n \to \infty} R_n(x) = \sum_{k = 0}^\infty \frac{x^k}{k!}
+e^x = \sum_{k = 0}^\infty \frac{x^k}{k!}
+$$
+が成り立つ． -->
+
+---
+
+## 三角関数のテイラー展開
+
 <!-- 
 ---
 
@@ -321,14 +407,62 @@ $$
 \left|\sum_{k = 1}^n a_k\right| \leq \sum_{k = 1}^n |a_k|
 $$
 と同様の不等式が，積分についても成り立つということ (積分 ($\int$) が和 ($+$)の拡張なら，和で成り立っていた三角不等式が積分でも成り立つことが期待されるが，実際に成り立つということ)． -->
-
+<!-- 
 ---
 
 ## 積分の性質
 
 **命題** $\,$ $f(x)$，$g(x)$ が $I = [a, b]$ で連続なら
-1. $f(x) \leq g(x)$ なら $\displaystyle \int_a^b f(x) dx \leq \int_a^b g(x) dx$.
-1. (**三角不等式**) $\,\displaystyle \left|\int_a^b f(x) dx\right| \leq \int_a^b |f(x)| dx$.
+1. (**単調性**) $\,$ $f(x) \leq g(x)$ なら $\displaystyle \int_a^b f(x) dx \leq \int_a^b g(x) dx$.
+1. (**三角不等式**) $\,$ $\displaystyle \left|\int_a^b f(x) dx\right| \leq \int_a^b |f(x)| dx$.
+$\,$
+
+単調性は，$g(x)$ のグラフが $f(x)$ のグラフより上にあるなら，$g(x)$ のグラフと $x$ 軸の間の面積は，$f(x)$ のグラフと $x$ 軸の間の面積より大きいということ．
+
+積分の三角等式は，実数の三角不等式
+$$
+\left|\sum_{k = 1}^n a_k\right| \leq \sum_{k = 1}^n |a_k|
+$$
+と同様の不等式が，積分についても成り立つということ (積分 ($\int$) が和 ($+$)の拡張なら，和で成り立っていた三角不等式が積分でも成り立つことが期待されるが，実際に成り立つということ)． -->
+
+---
+
+## 補足: 積分の線形性
+
+**命題 (積分の線形性)** $\,$ $f(x)$, $g(x)$ が $I = [a, b]$ で連続で連続なら，
+$$
+\begin{align*}
+\int_a^b \left\{f(x) + g(x) \right\} dx & = \int_a^b f(x) dx + \int_a^b g(x) dx, \\
+\int_a^b \lambda f(x) dx & = \lambda \int_a^b f(x) dx \quad \text{($\lambda$: 定数)}.
+\end{align*}
+$$
+
+---
+
+## 補足: 積分の単調性
+
+**命題 (積分の単調性)** $\,$ $f(x)$，$g(x)$ は $I = [a, b]$ で連続とする．$f(x) \leq g(x)$ なら
+$$
+\int_a^b f(x) dx \leq \int_a^b g(x) dx.
+$$
+$\,$
+$g(x)$ のグラフが $f(x)$ のグラフより上にあるなら，$g(x)$ のグラフと $x$ 軸の間の面積は，$f(x)$ のグラフと $x$ 軸の間の面積より大きいということ．
+
+---
+
+![bg contain](IMG_9384.jpeg)
+
+---
+
+## 補足: 積分の三角不等式
+
+**命題 (積分の三角不等式)** $\,$ $f(x)$ が $I = [a, b]$ で連続なら
+$$
+\left|\int_a^b f(x) dx\right| \leq \int_a^b |f(x)| dx.
+$$
+$\,$
+
+**証明** $\,$ $f(x)$ が連続なら $|f(x)|$ もそうで，$-|f(x)| \leq f(x) \leq |f(x)|$ だから，単調性より，$\displaystyle -\int_a^b |f(x)| dx \leq \int_a^b f(x) dx \leq \int_a^b |f(x)| dx$．したがって，$\displaystyle \left|\int_a^b f(x) dx\right| \leq \int_a^b |f(x)| dx$． (証明終)
 $\,$
 
 積分の三角等式は，実数の三角不等式
@@ -339,31 +473,13 @@ $$
 
 ---
 
-## 指数関数のテイラー展開
+## 補足: $a \geq b$ のときの $\int_a^b f(x) dx$
 
-$x_0$ における指数関数のテイラー公式
+$a \geq b$ のとき，
 $$
-e^x = \sum_{k = 0}^{n - 1} \frac{x^k}{k!} + R_n(x),
+\int_a^a f(x) dx = 0, \quad \int_a^b f(x) dx = -\int_b^a f(x) dx
 $$
-$$
-R_n(x) = \int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} e^t dt
-$$
-の剰余項 $R_n(x)$ が，各点 $x$ で $0$ に収束するか確認する．$x > 0$ なら $e^t \leq e^x$ $\,(0 \leq t \leq x)$ であるから，積分の性質より
-
----
-
-$$
-\begin{align*}
-|R_n(x)| & = \left|\int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} e^t dt\right| \\
-& \leq \int_{0}^x \left|\frac{(x - t)^{n - 1}}{(n - 1)!} e^t \right| dt \\
-& = \int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} |e^t| dt \\
-& \leq \int_{0}^x \frac{(x - t)^{n - 1}}{(n - 1)!} |e^x| dt \\
-& = \frac{|e^x|}{(n - 1)!} \int_{0}^x (x - t)^{n - 1} dt \\
-& = \frac{|e^x|}{(n - 1)!} \Bigl[-\frac{(x - t)^n}{n}\Bigr]_0^x \\
-& = |e^x| \frac{x^n}{n!}
-\end{align*}
-$$
-<!-- ，$x \leq 0$ なら $e^t \leq e^0 = 1$ $\,(x \leq t \leq 0)$ であるから， -->
+とおく．
 
 ---
 
