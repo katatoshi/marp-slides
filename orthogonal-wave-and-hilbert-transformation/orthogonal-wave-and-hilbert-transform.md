@@ -77,7 +77,9 @@ $$
 \mathcal{F}[\sin \omega_0 t](\omega) = j \pi (\delta(\omega + \omega_0) - \delta(\omega - \omega_0))
 \end{gather*}
 $$
-である．ただし，$\mathcal{F}$ はフーリエ変換，$\delta(\omega)$ はディラックのデルタ関数である (付録を参照)．ここでは $\omega_0 > 0$ とする．
+である．ただし，$\mathcal{F}$ はフーリエ変換，$\delta(\omega)$ はディラックのデルタ関数である (付録を参照)．なお，以下では $\omega_0 > 0$ とする．
+
+---
 
 サイン波のスペクトルを $\omega$ の値で場合分けすると次のようになる．
 $$
@@ -94,6 +96,8 @@ j \pi \delta(\omega + \omega_0) & \text{($\omega < 0$)}.
 \end{cases}
 $$
 
+![h:380](IMG_9405.jpeg)
+
 ---
 
 これらを見比べると，$\sin \omega_0 t$ のスペクトルは $\cos \omega_0 t$ のスペクトルに
@@ -102,13 +106,7 @@ $$
 1. $\omega = 0$ のときは $0$ をかけたもの
 1. $\omega < 0$ のときは $j$ をかけたもの
 
-であることがわかる．
-
-![h:360](IMG_9405.jpeg)
-
----
-
-したがって，符号関数
+であることがわかる．したがって，符号関数
 $$
 \sgn(\omega) =
 \begin{cases}
@@ -123,6 +121,8 @@ $$
 $$
 が成り立つことになる．つまり，$\cos \omega_0 t$ については，そのスペクトルに $-j \sgn(\omega)$ をかけることで，その直交波のスペクトルが得られる．
 
+---
+
 次に，$\sin \omega_0 t$ と $-\cos \omega_0 t$ のスペクトル
 $$
 \mathcal{F}[\sin \omega_0 t](\omega) = \begin{cases}
@@ -134,9 +134,11 @@ j \pi \delta(\omega + \omega_0) & \text{($\omega < 0$)},
 \mathcal{F}[-\cos \omega_0 t](\omega) = \begin{cases}
 -\pi \delta(\omega - \omega_0) & \text{($\omega > 0$)} \\
 0 & \text{($\omega = 0$)} \\
--\pi \delta(\omega + \omega_0) & \text{($\omega < 0$)}.
+-\pi \delta(\omega + \omega_0) & \text{($\omega < 0$)}
 \end{cases}
 $$
+
+![h:380](IMG_9406.jpeg)
 
 ---
 
@@ -146,13 +148,7 @@ $$
 1. $\omega = 0$ のときは $0$ をかけたもの
 1. $\omega < 0$ のときは $j$ をかけたもの
 
-であることがわかる (ただし，$\mathcal{F}[-\cos \omega_0 t](\omega) = -\mathcal{F}[\cos \omega_0 t](\omega)$ を使った)．
-
-![h:360](IMG_9406.jpeg)
-
----
-
-したがって，
+であることがわかる (ただし，$\mathcal{F}[-\cos \omega_0 t](\omega) = -\mathcal{F}[\cos \omega_0 t](\omega)$ を使った)．したがって，符号関数を使えば，
 $$
 -j \sgn(\omega) \mathcal{F}[\sin \omega_0 t](\omega) = \mathcal{F}[-\cos \omega_0 t](\omega)
 $$
@@ -185,10 +181,11 @@ x_\perp(t)
 & = \mathcal{F}^{-1}\left[-j \sgn(\omega) X(\omega)\right](t) \\
 \end{align*}
 $$
-となる．ただし，$\mathcal{F}^{-1}$ はフーリエ逆変換で $X(\omega)$ は $x(t)$ のスペクトル $\mathcal{F}[x(t)]$ である．よって，直交波 $x_\perp(t)$ のスペクトルを $X_\perp(\omega)$ とすると
+となる．ただし，$\mathcal{F}^{-1}$ はフーリエ逆変換で $X(\omega)$ は $x(t)$ のスペクトル $\mathcal{F}[x(t)]$ である．
 
 ---
 
+よって，直交波 $x_\perp(t)$ のスペクトルを $X_\perp(\omega)$ とすると
 $$
 \begin{align*}
 X_\perp(\omega)
@@ -197,9 +194,7 @@ X_\perp(\omega)
 & = -j \sgn(\omega) X(\omega)
 \end{align*}
 $$
-となる．
-
-つまり，サイン波とは限らない周期的な波についても，スペクトルに $-j \sgn(\omega)$ をかけると，その波の直交波のスペクトルが得られる．
+となる．つまり，サイン波とは限らない周期的な波についても，スペクトルに $-j \sgn(\omega)$ をかけると，その波の直交波のスペクトルが得られる．
 
 ---
 
@@ -244,9 +239,7 @@ X_\perp(\omega)
 & = -j \sgn(\omega) X(\omega)
 \end{align*}
 $$
-となる．
-
-つまり，周期的とは限らない波についても，スペクトルに $-j \sgn(\omega)$ をかけると，その波の直交波のスペクトルが得られる．
+となる．つまり，周期的とは限らない波についても，スペクトルに $-j \sgn(\omega)$ をかけると，その波の直交波のスペクトルが得られる．
 
 ---
 
@@ -281,13 +274,15 @@ $$
 $$
 x_\perp(t) = \frac{1}{\pi t} * x(t) = \frac{1}{\pi} \left(x(t) * \frac{1}{t}\right) = \frac{1}{\pi} \int_{-\infty}^\infty \frac{x(\tau)}{t - \tau} d\tau
 $$
-が得られる．この右辺の積分を**ヒルベルト変換**という．つまり，波 $x(t)$ の直交波は $x(t)$ のヒルベルト変換である．
-
-なお，右辺の積分の被積分関数は $\tau = t$ では定義されないので，この積分は
+が得られる．この右辺の積分を**ヒルベルト変換**という．つまり，波 $x(t)$ の直交波は $x(t)$ のヒルベルト変換である．なお，右辺の積分の被積分関数は $\tau = t$ では定義されないので，この積分は
 $$
 \int_{-\infty}^\infty \frac{x(\tau)}{t - \tau} d\tau = \lim_{\varepsilon \downarrow 0} \left(\int_{-\infty}^{t - \varepsilon} \frac{x(\tau)}{t - \tau} d\tau + \int_{t + \varepsilon}^\infty \frac{x(\tau)}{t - \tau} d\tau\right)
 $$
-によって定義される．これを**コーシーの主値**と呼ぶ．積分がコーシーの主値であることを表すために $\displaystyle \text{p.v.} \int_{-\infty}^\infty \frac{x(\tau)}{t - \tau} d\tau$ や $\displaystyle \text{P} \int_{-\infty}^\infty \frac{x(\tau)}{t - \tau} d\tau$ と書くことがある．
+によって定義される．これを**コーシーの主値**と呼ぶ．積分がコーシーの主値であることを表すために
+$$
+\text{p.v.} \int_{-\infty}^\infty \frac{x(\tau)}{t - \tau} d\tau, \quad \text{P} \int_{-\infty}^\infty \frac{x(\tau)}{t - \tau} d\tau
+$$
+などと書くことがある．
 
 ---
 
@@ -317,7 +312,7 @@ $$
 & = \frac{1}{2 \pi} \frac{1}{2 \pi} \int_{-\infty}^\infty \left(\int_{-\infty}^\infty X(\omega) e^{j \omega t} \left(\int_{-\infty}^\infty (-j \sgn (\omega')) X(\omega') e^{j \omega' t} d\omega'\right) d\omega\right) dt \\
 & = \frac{1}{2 \pi} \frac{1}{2 \pi} \int_{-\infty}^\infty \left(\int_{-\infty}^\infty \left(\int_{-\infty}^\infty X(\omega) e^{j \omega t} (-j \sgn (\omega')) X(\omega') e^{j \omega' t} d\omega'\right) d\omega\right) dt \\
 & = \frac{1}{2 \pi} \frac{1}{2 \pi} \int_{-\infty}^\infty \left(\int_{-\infty}^\infty \left(\int_{-\infty}^\infty X(\omega) e^{j \omega t} (-j \sgn (\omega')) X(\omega') e^{j \omega' t} dt\right) d\omega\right) d\omega' \\
-& = \frac{1}{2 \pi} \int_{-\infty}^\infty (-j \sgn (\omega')) X(\omega') \left(\int_{-\infty}^\infty X(\omega) \left(\frac{1}{2 \pi} \int_{-\infty}^\infty e^{j t (\omega + \omega')} dt\right) d\omega\right) d\omega'.
+& = \frac{1}{2 \pi} \int_{-\infty}^\infty (-j \sgn (\omega')) X(\omega') \left(\int_{-\infty}^\infty X(\omega) \left(\frac{1}{2 \pi} \int_{-\infty}^\infty e^{j t (\omega + \omega')} dt\right) d\omega\right) d\omega'
 \end{align*}
 $$
 
